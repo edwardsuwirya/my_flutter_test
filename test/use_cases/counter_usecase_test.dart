@@ -5,8 +5,7 @@ import 'package:my_flutter_test/use_cases/counter_decrement.dart';
 import 'package:my_flutter_test/use_cases/counter_increment.dart';
 import 'package:test/test.dart';
 
-import 'counter_repo_test.mocks.dart';
-
+import 'counter_usecase_test.mocks.dart';
 
 /*
 1. Install package mockito + build_runner
