@@ -5,7 +5,7 @@ class CounterIncrement {
 
   CounterIncrement(this._repo);
 
-  int call() {
+  Future<int> call() {
     return _repo.increment();
   }
 }

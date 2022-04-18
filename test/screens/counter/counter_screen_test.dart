@@ -26,7 +26,7 @@ void main() {
   testWidgets('Counter Increment Button Widget', (WidgetTester tester) async {
     final incrementClient = MockCounterIncrement();
     final decrementClient = MockCounterDecrement();
-    when(incrementClient.call()).thenReturn(1);
+    when(incrementClient.call()).thenAnswer((_) async => 1);
     await tester.pumpWidget(MaterialApp(
       home: CounterScreen(
           counterIncrement: incrementClient, counterDecrement: decrementClient),

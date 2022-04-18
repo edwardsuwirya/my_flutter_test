@@ -17,11 +17,11 @@ class CounterViewModel with ChangeNotifier {
     _currentValue = appstate.idle<int>(data: value);
   }
 
-  void onIncrease() {
+  Future<void> onIncrease() async {
     _currentValue = appstate.loading();
     notifyListeners();
     try {
-      final res = _counterIncrement();
+      final res = await _counterIncrement();
       _currentValue = appstate.success<int>(res);
       value = _currentValue.data;
       notifyListeners();
@@ -32,11 +32,11 @@ class CounterViewModel with ChangeNotifier {
     }
   }
 
-  void onDecrease() {
+  Future<void> onDecrease() async {
     _currentValue = appstate.loading();
     notifyListeners();
     try {
-      final res = _counterDecrement();
+      final res = await _counterDecrement();
       _currentValue = appstate.success<int>(res);
       value = _currentValue.data;
       notifyListeners();

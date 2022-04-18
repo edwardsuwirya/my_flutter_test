@@ -2,8 +2,10 @@
 // in my_flutter_test/test/screens/counter/counter_viewmodel_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i3;
+
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:my_flutter_test/use_cases/counter_decrement.dart' as _i3;
+import 'package:my_flutter_test/use_cases/counter_decrement.dart' as _i4;
 import 'package:my_flutter_test/use_cases/counter_increment.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -25,19 +27,19 @@ class MockCounterIncrement extends _i1.Mock implements _i2.CounterIncrement {
   }
 
   @override
-  int call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+  _i3.Future<int> call() => (super.noSuchMethod(Invocation.method(#call, []),
+      returnValue: Future<int>.value(0)) as _i3.Future<int>);
 }
 
 /// A class which mocks [CounterDecrement].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCounterDecrement extends _i1.Mock implements _i3.CounterDecrement {
+class MockCounterDecrement extends _i1.Mock implements _i4.CounterDecrement {
   MockCounterDecrement() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  int call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+  _i3.Future<int> call() => (super.noSuchMethod(Invocation.method(#call, []),
+      returnValue: Future<int>.value(0)) as _i3.Future<int>);
 }

@@ -1,5 +1,5 @@
 abstract class CounterRepo {
-  int increment();
+  Future<int> increment();
 
-  int decrement();
+  Future<int> decrement();
 }

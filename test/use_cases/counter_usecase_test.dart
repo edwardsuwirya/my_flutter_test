@@ -27,19 +27,19 @@ flutter pub run build_runner build
 @GenerateMocks([CounterRepo])
 void main() {
   group('Counter Use Case', () {
-    test('Counter Increment Use Case should be called ', () {
+    test('Counter Increment Use Case should be called ', () async {
       final client = MockCounterRepo();
-      when(client.increment()).thenReturn(100);
+      when(client.increment()).thenAnswer((_) async => 100);
       final counterIncrementUseCase = CounterIncrement(client);
-      final actual = counterIncrementUseCase();
+      final actual = await counterIncrementUseCase();
       expect(actual, 100);
     });
 
-    test('Counter Decrement Use Case should be called successfully', () {
+    test('Counter Decrement Use Case should be called successfully', () async {
       final client = MockCounterRepo();
-      when(client.decrement()).thenReturn(-9);
+      when(client.decrement()).thenAnswer((_) async => -9);
       final counterDecrementUseCase = CounterDecrement(client);
-      final actual = counterDecrementUseCase();
+      final actual = await counterDecrementUseCase();
       expect(actual, -9);
     });
   });

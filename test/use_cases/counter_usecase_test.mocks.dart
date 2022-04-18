@@ -2,6 +2,8 @@
 // in my_flutter_test/test/use_cases/counter_usecase_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i3;
+
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:my_flutter_test/data/repositories/counter_repo.dart' as _i2;
 
@@ -24,11 +26,11 @@ class MockCounterRepo extends _i1.Mock implements _i2.CounterRepo {
   }
 
   @override
-  int increment() =>
-      (super.noSuchMethod(Invocation.method(#increment, []), returnValue: 0)
-          as int);
+  _i3.Future<int> increment() =>
+      (super.noSuchMethod(Invocation.method(#increment, []),
+          returnValue: Future<int>.value(0)) as _i3.Future<int>);
   @override
-  int decrement() =>
-      (super.noSuchMethod(Invocation.method(#decrement, []), returnValue: 0)
-          as int);
+  _i3.Future<int> decrement() =>
+      (super.noSuchMethod(Invocation.method(#decrement, []),
+          returnValue: Future<int>.value(0)) as _i3.Future<int>);
 }
