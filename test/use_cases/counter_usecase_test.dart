@@ -1,9 +1,10 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:my_flutter_test/data/repositories/counter_repo.dart';
+import 'package:my_flutter_test/ioc.dart';
 import 'package:my_flutter_test/use_cases/counter_decrement.dart';
 import 'package:my_flutter_test/use_cases/counter_increment.dart';
-import 'package:test/test.dart';
 
 import 'counter_usecase_test.mocks.dart';
 
@@ -24,8 +25,23 @@ flutter pub run build_runner build
 
  */
 
+class MyCounterRepoMock implements CounterRepo{
+  @override
+  Future<int> decrement() {
+    return Future.value(10);
+  }
+
+  @override
+  Future<int> increment() {
+    return Future.value(1);
+  }
+
+}
 @GenerateMocks([CounterRepo])
 void main() {
+  setUpAll((){
+    getIt.registerFactory<CounterRepo>(() => MyCounterRepoMock());
+  });
   group('Counter Use Case', () {
     test('Counter Increment Use Case should be called ', () async {
       final client = MockCounterRepo();
@@ -41,6 +57,12 @@ void main() {
       final counterDecrementUseCase = CounterDecrement(client);
       final actual = await counterDecrementUseCase();
       expect(actual, -9);
+    });
+
+    test('Counter Decrement Use Case should be called successfully (with getit)', () async {
+      final counterDecrementUseCase = CounterDecrement(getIt<CounterRepo>());
+      final actual = await counterDecrementUseCase();
+      expect(actual, 10);
     });
   });
 }
