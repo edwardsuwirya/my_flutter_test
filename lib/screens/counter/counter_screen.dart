@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_test/ioc.dart';
 import 'package:my_flutter_test/screens/counter/counter_viewmodel.dart';
-import 'package:my_flutter_test/use_cases/counter_decrement.dart';
-import 'package:my_flutter_test/use_cases/counter_increment.dart';
 import 'package:my_flutter_test/utils/screen_state.dart';
 import 'package:provider/provider.dart';
 
 class CounterScreen extends StatelessWidget {
-  final CounterIncrement counterIncrement;
-  final CounterDecrement counterDecrement;
+  final CounterViewModel _counterViewModel = getIt<CounterViewModel>();
 
-  const CounterScreen(
-      {Key? key,
-      required this.counterIncrement,
-      required this.counterDecrement})
-      : super(key: key);
+  CounterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +17,7 @@ class CounterScreen extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (_) {
-          return CounterViewModel(counterIncrement, counterDecrement);
+          return _counterViewModel;
         },
         child: Center(
           child: Consumer<CounterViewModel>(
